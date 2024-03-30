@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body >
+    <label for="email">Email <br>
+        <input type="text" name="email" id="email" placeholder="Example@gmail.com" onchange="emailCheck()">
+    </label>
+    <h3 id="err1"></h3>
+    <br>
+    <label for="pass">Password <br>
+        <input type="text" name="pass" id="pass" placeholder="Your Password" onchange="passwordCheck()">
+    </label>
+
+    <br>
+    <h3 id="err2"></h3>
+    <button onclick="submitForm()">Submit</button>
+
+
+    <script>
+
+
+
+        function emailCheck() {
+            var emailRegex = /^(?=.*@)(?=.*\.)[^\s@]+\@[^\s@]+\.[^\s@]+$/
+            var input = document.getElementById('email').value; // Retrieve input value from the email input field
+            if (emailRegex.test(input)) {
+                document.getElementById('err1').innerHTML = "Good";
+            } else {
+                document.getElementById('err1').innerHTML = "error";
+            }
+        }
+
+
+        function passwordCheck() {
+
+            const pwd = document.getElementById('pass').value
+
+            if (pwd.length > 8) {
+                document.getElementById('err2').innerHTML = "Done"
+            } else {
+                document.getElementById('err2').innerHTML = "Error"
+            }
+        }
+        function clearText(){
+                 document.getElementById('email').value="" 
+                 document.getElementById('pass').value="" 
+
+                document.getElementById('err1').innerHTML = "";
+            document.getElementById('err2').innerHTML = "";
+
+            }
+
+        function submitForm(){
+            var emailValid = document.getElementById('err1').innerHTML === "Good";
+            var passValid = document.getElementById('err2').innerHTML === "Done";
+
+            if(emailValid && passValid){
+                alert("Form submitted successfully!")
+                clearText()
+            } else {
+                alert("Please correct errors in the form.");
+            }
+
+            
+            
+        }
+    </script>
+</body>
+
+</html>
